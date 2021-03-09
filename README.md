@@ -1,6 +1,26 @@
 # SKER
 The source code of the COLING 2020 paper "[Synonym Knowledge Enhanced Reader for Chinese Idiom Reading Comprehension](https://www.aclweb.org/anthology/2020.coling-main.329/)".
 
+# Requirements
+See requirement.txt for details
+
+- allennlp==0.8.5
+- torch==1.1.0
+- pytorch-transformers==1.1.0
+
+# Usage
+
+**Training**
+```
+export PROJECT_ROOT='/path/to/project'
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+allennlp train config/sker.jsonnet -s /path/to/save --include-package src
+```
+
+**Testing**
+```
+allennlp predict /path/to/model.tar.gz data/evaluated_ChID_dataset.txt --output-file /path/to/output --silent --cuda-device 0 --use-dataset-reader --predictor chid --include-package src --batch-size 16
+```
 
 # Citation
 If you used the datasets or code, please cite our paper:
